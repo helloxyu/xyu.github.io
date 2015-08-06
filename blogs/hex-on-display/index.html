@@ -3,17 +3,18 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Emerald Dream|a Tech Version</title>
+  <title>数码管上显示数字所需的十六进制与二进制 - Emerald Dream|a Tech Version</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Emerald Dream">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Emerald Dream|a Tech Version">
-<meta property="og:url" content="http://hidasia.github.io/index.html">
+  <meta name="description" content="自己在纸上画出来的……这里列出共阳极数码管上各个数字对应的二进制与十六进制表示，共阴极数码管二进制表示通过按位取反即可获得：F:    0111 0001                 0x71E:    0111 1001                 0x79D:    0101 1110                 0x5eC:    0011 1001">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数码管上显示数字所需的十六进制与二进制">
+<meta property="og:url" content="http://hidasia.github.io/blogs/hex-on-display/index.html">
 <meta property="og:site_name" content="Emerald Dream|a Tech Version">
-<meta property="og:description" content="Emerald Dream">
+<meta property="og:description" content="自己在纸上画出来的……这里列出共阳极数码管上各个数字对应的二进制与十六进制表示，共阴极数码管二进制表示通过按位取反即可获得：F:    0111 0001                 0x71E:    0111 1001                 0x79D:    0101 1110                 0x5eC:    0011 1001">
+<meta property="og:updated_time" content="2015-08-06T03:11:29.196Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Emerald Dream|a Tech Version">
-<meta name="twitter:description" content="Emerald Dream">
+<meta name="twitter:title" content="数码管上显示数字所需的十六进制与二进制">
+<meta name="twitter:description" content="自己在纸上画出来的……这里列出共阳极数码管上各个数字对应的二进制与十六进制表示，共阴极数码管二进制表示通过按位取反即可获得：F:    0111 0001                 0x71E:    0111 1001                 0x79D:    0101 1110                 0x5eC:    0011 1001">
   
   
     <link rel="icon" href="/favicon.png">
@@ -65,16 +66,15 @@ ga('send', 'pageview');
     </div>
   </div>
 </header>
-    <section id="main" class="outer">
-      <article id="post-hex-on-display" class="article article-type-post" itemscope itemprop="blogPost">
+    <section id="main" class="outer"><article id="post-hex-on-display" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
     
     
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/blogs/hex-on-display/">数码管上显示数字所需的十六进制与二进制</a>
+    <h1 class="article-title" itemprop="name">
+      数码管上显示数字所需的十六进制与二进制
     </h1>
   
 
@@ -110,121 +110,26 @@ ga('send', 'pageview');
   
   </div>
   
-</article>
-
-
     
-      <article id="post-free-running-keys-MCU" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
+<nav id="article-nav">
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/blogs/free-running-keys-MCU/">独立按键</a>
-    </h1>
   
-
-      </header>
-    
-    <div class="article-meta">
-      <a href="/blogs/free-running-keys-MCU/" class="article-date">
-  <time datetime="2015-08-05T04:36:49.000Z" itemprop="datePublished">2015-08-05</time>
-</a>
-      
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/MCU/">MCU</a>
-  </div>
-
-      
-        <div class="article-comment-link-wrap">
-          <a href="http://hidasia.github.io//blogs/free-running-keys-MCU/#disqus_thread" class="article-comment-link">评论</a>
-        </div>
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>按键在闭合和短开时，触点会存在抖动现象：<br><img src="/imgs/remove-the-shake.jpg" alt=""><br>若要让独立按键正常工作，避免按下一次却出现了按下多次的效果，消除抖动是其中的一个非常关键的环节。以一次完整的按键过程（按下-提起-还原）为例，来描述消抖这一环节的实现：  </p>
-<pre>
-if (KEY != 0xff)                                    //当检测到有按键被按下时    
-    {  
-        Delay10ms();                                //通过延时函数度过按下独立按键是的抖动阶段  
-        if (KEY != 0xff)                            //判断抖动阶段是否度过，按键是否处于被按下的稳定状态  
-        {  
-            Delay10ms();                            //再次延时，以判断按键是否还原  
-            if (KEY == 0xff)                        //如果出现还原的状态，准备执行设定的效果  
-            {  
-                //Add the effect that you want    
-                while (KEY != 0xff);                //当按键处于稳定的还原状态后，设定的效果开始执行  
-            }  
-        }  
-    }  
-</pre>
-
-      
-    </div>
+    <a href="/blogs/free-running-keys-MCU/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">独立按键&nbsp;<span>&gt;</span></div>
+    </a>
   
-    <footer class="article-footer">
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C语言/">C语言</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/单片机/">单片机</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/实习/">实习</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/暑假/">暑假</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/预热/">预热</a></li></ul>
+</nav>
 
-    </footer>
-  
-  </div>
   
 </article>
 
 
-    
-      <article id="post-restart" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/blogs/restart/">重新开始</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      <a href="/blogs/restart/" class="article-date">
-  <time datetime="2015-07-27T16:08:00.000Z" itemprop="datePublished">2015-07-28</time>
-</a>
-      
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Sundries/">Sundries</a>
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
   </div>
-
-      
-        <div class="article-comment-link-wrap">
-          <a href="http://hidasia.github.io//blogs/restart/#disqus_thread" class="article-comment-link">评论</a>
-        </div>
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>之前那个以试验为主要目的的阶段自此宣告结束，现在对Github Pages和Hexo已经有了较为熟练的掌握。于是乎，之前的那些文章算是完成了自己的历史使命，可以永远的在Hexo上消失了。不用担心，他们只是<a href="http://i-zyx.com" target="_blank" rel="external">i-zyx</a>上的拷贝而已。<br>既然Github Pages有着自己的定位，那我也就顺势在这里新建一个技术向的博客好了，从今开始，一切关于技术的心得将在这里发布。</p>
-
-      
-    </div>
-  
-    <footer class="article-footer">
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/start/">start</a></li></ul>
-
-    </footer>
-  
-  </div>
-  
-</article>
-
-
-    </section>
+</section>
+</section>
     <footer id="footer">
   
   <div class="outer">
@@ -238,11 +143,13 @@ if (KEY != 0xff)                                    //当检测到有按键被�
 <script>
   var disqus_shortname = 'i-zyx';
   
+  var disqus_url = 'http://hidasia.github.io//blogs/hex-on-display/';
+  
   (function(){
     var dsq = document.createElement('script');
     dsq.type = 'text/javascript';
     dsq.async = true;
-    dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
     (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
   })();
 </script>
