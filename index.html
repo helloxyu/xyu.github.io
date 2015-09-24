@@ -66,6 +66,55 @@ ga('send', 'pageview');
   </div>
 </header>
     <section id="main" class="outer">
+      <article id="post-wordpress-rewrite-nginx" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blogs/wordpress-rewrite-nginx/">Nginx下配置WordPress的</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      <a href="/blogs/wordpress-rewrite-nginx/" class="article-date">
+  <time datetime="2015-09-24T12:19:23.000Z" itemprop="datePublished">2015-09-24</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Web-Server/">Web Server</a>
+  </div>
+
+      
+        <div class="article-comment-link-wrap">
+          <a href="http://hidasia.github.io//blogs/wordpress-rewrite-nginx/#disqus_thread" class="article-comment-link">评论</a>
+        </div>
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在Nginx目录下打开站点的配置文件（<em>**.conf），在server{}里添加如下代码：<br><code><br>location / {<br>if (-f $request_filename/index.html){<br>                rewrite (.</code></em>) $1/index.html break;<br>        }<br>if (-f $request_filename/index.php){<br>                rewrite (.<em>) $1/index.php;<br>        }<br>if (!-f $request_filename){<br>                rewrite (.</em>) /index.php;<br>        }<br>}<br></p>
+<p>PS 若<br><code><br>location /{}<br></code><br>已经存在，则直接添加括号内代码即可。</p>
+
+      
+    </div>
+  
+    <footer class="article-footer">
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Nginx/">Nginx</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/WordPress/">WordPress</a></li></ul>
+
+    </footer>
+  
+  </div>
+  
+</article>
+
+
+    
       <article id="post-wordpress-owner" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -106,7 +155,7 @@ ga('send', 'pageview');
   
     <footer class="article-footer">
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/WordPress/">WordPress</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Nginx/">Nginx</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/WordPress/">WordPress</a></li></ul>
 
     </footer>
   
