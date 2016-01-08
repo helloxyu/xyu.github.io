@@ -19,7 +19,7 @@
 快速配置  
 
 静待安装完">
-<meta property="og:updated_time" content="2016-01-08T06:20:34.958Z">
+<meta property="og:updated_time" content="2016-01-08T06:24:04.840Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Shadowsocks服务端的安装与配置">
 <meta name="twitter:description" content="安装在Debian/Ubuntu下:apt-get install python-pip python-m2cryptopip install shadowsocks在CentOS下：yum install python-setuptools m2crypto &amp;amp;&amp;amp; easy_install pippip install shadowsocks配置  
@@ -110,7 +110,7 @@ ga('send', 'pageview');
 <h6>快速配置</h6>  
 
 <p>静待安装完成（很快），之后输入如下命令即可对Shadowsocks进行简易配置以使其工作：  </p>
-<p><pre><br>sudo ssserver -p 443 -k password -m aes-256-cfb —user nobody -d start<br></pre><br>其中，<br><code>-p 443</code> 设置服务器端口（SERVER_PORT）为：<code>443</code>，<br><code>-k password</code> 443端口的密码（PASSWORD）：<code>password</code>，<br><code>-m aes-256-cfb</code> 设置加密策略（METHOD）：<code>aes-256-cfb</code>，<code>aes-256-cfb</code>为Shadowsocks的默认加密策略，更多加密策略信息<a href="https://github.com/shadowsocks/shadowsocks/wiki/Encryption" target="_blank" rel="external">点此</a>。<br>如果想了解ssserver的所有选项，可以输入：<code>ssserver -h</code>查询。  </p>
+<p><pre><br>sudo ssserver -p 443 -k password -m aes-256-cfb —user nobody -d start<br></pre><br><a id="more"></a><br>其中，<br><code>-p 443</code> 设置服务器端口（SERVER_PORT）为：<code>443</code>，<br><code>-k password</code> 443端口的密码（PASSWORD）：<code>password</code>，<br><code>-m aes-256-cfb</code> 设置加密策略（METHOD）：<code>aes-256-cfb</code>，<code>aes-256-cfb</code>为Shadowsocks的默认加密策略，更多加密策略信息<a href="https://github.com/shadowsocks/shadowsocks/wiki/Encryption" target="_blank" rel="external">点此</a>。<br>如果想了解ssserver的所有选项，可以输入：<code>ssserver -h</code>查询。  </p>
 <p></p><h6>详细配置</h6><br>另外，亦可通过手动写入配置文件来配置Shadowsocks。<br>在/etc目录下新建shadowsocks.json文件：<br>内容示例：  <p></p>
 <p><pre><br>{<br>    “server”:”my_server_ip”,<br>    “server_port”:8388,<br>    “local_address”: “127.0.0.1”,<br>    “local_port”:1080,<br>    “password”:”mypassword”,<br>    “timeout”:300,<br>    “method”:”aes-256-cfb”,<br>    “fast_open”: false<br>}<br></pre><br>将<code>my_server_ip</code>替换为替换为当前VPS的IP地址。  </p>
 <p></p><h6>ipv6支持</h6><br>如果希望Shadowsocks启用ipv6访问（前提是VPS自身支持ipv6），可以将server配置改成：<p></p>
