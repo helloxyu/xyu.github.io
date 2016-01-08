@@ -17,7 +17,7 @@ add_header Strict-Transport-Security “max-age=63072000; preload”;这样做�
 add_header Strict-Transport-Security “max-age=63072000; preload”;这样做，可以使支持HSTS的浏览器在遇到这个响应头的时候，把当前网站加入HSTS列表，然后在max-age指定的秒数内，当前网站所有请求都会被重定向为https。即使用">
 <meta property="og:image" content="https://dn-izyx.qbox.me/content/images/2016/01/logs/CPU-usage.PNG">
 <meta property="og:image" content="https://dn-izyx.qbox.me/content/images/2016/01/logs/SSL-Labs-result.PNG">
-<meta property="og:updated_time" content="2016-01-08T16:12:05.932Z">
+<meta property="og:updated_time" content="2016-01-08T16:17:04.596Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="对站点安全性的优化">
 <meta name="twitter:description" content="注：以下内容所指站点为：the Barrens  
@@ -107,7 +107,7 @@ ga('send', 'pageview');
       
         <p>注：以下内容所指站点为：<a href="https://zyx.im" target="_blank" rel="external">the Barrens</a>  </p>
 <p><strong>启用HSTS</strong><br>在本站的Nginx配置文件中，加入：</p>
-<p><pre>add_header Strict-Transport-Security “max-age=63072000; preload”;<br></pre><br>这样做，可以使支持HSTS的浏览器在遇到这个响应头的时候，把当前网站加入HSTS列表，然后在max-age指定的秒数内，当前网站所有请求都会被重定向为https。即使用户主动输入http:或者不输入协议部分，都将重定向到https:地址。这样做可以让浏览器在首次访问本站点后，自动实现http到https的跳转，代替了Web服务器进行301/302重定向的工作。<br>于是乎，Nginx配置文件中的</p>
+<p><pre>add_header Strict-Transport-Security “max-age=63072000; preload”;<br></pre><br>这样做，可以使支持HSTS的浏览器在遇到这个响应头的时候，把当前网站加入HSTS列表，然后在max-age指定的秒数内，当前网站所有请求都会被重定向为https。即使用户主动输入http:或者不输入协议部分，都将重定向到https:地址。这样做可以让浏览器在首次访问本站点后，自动实现http到https的跳转，代替了Web服务器进行301/302重定向的工作。<br><a id="more"></a><br>于是乎，Nginx配置文件中的</p>
 <p><pre><br>return 301 <a href="https://$server_name$request_uri" target="_blank" rel="external">https://$server_name$request_uri</a>;<br></pre><br>会在首次访问之后变得多余，因此，可以单独写一个Nginx配置文件，来实现首次访问时http到https的重定向：</p>
 <p><pre><br>server {<br>        listen 80;<br>        listen [::]:80 ipv6only=on;<br>        server_name  zyx.im www.zyx.im;<br>        return 301 <a href="https://$server_name$request_uri" target="_blank" rel="external">https://$server_name$request_uri</a>;<br>        server_tokens   off;<br>}<br></pre><br><strong>隐藏服务器版本号信息</strong><br>观察本博客的请求响应头，会发现这一行<code>server:nginx</code>，而Nginx的具体版本号并没有说明，由于某些 Nginx 漏洞只存在于特定的版本，隐藏版本号可以提高安全性。实现的方法很简单，只需在博客的Nginx配置文件中加入：</p>
 <p><pre><br>server_tokens off;<br></pre><br>因为本站使用Ghost，通过Nginx反向代理进行访问，所以还需要加上如下配置：</p>

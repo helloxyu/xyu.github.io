@@ -97,20 +97,14 @@ ga('send', 'pageview');
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <p>注：以下内容所指站点为：<a href="https://zyx.im" target="_blank" rel="external">the Barrens</a>  </p>
+        <p>注：以下内容所指站点为：<a href="https://zyx.im">the Barrens</a>  </p>
 <p><strong>启用HSTS</strong><br>在本站的Nginx配置文件中，加入：</p>
-<p><pre>add_header Strict-Transport-Security “max-age=63072000; preload”;<br></pre><br>这样做，可以使支持HSTS的浏览器在遇到这个响应头的时候，把当前网站加入HSTS列表，然后在max-age指定的秒数内，当前网站所有请求都会被重定向为https。即使用户主动输入http:或者不输入协议部分，都将重定向到https:地址。这样做可以让浏览器在首次访问本站点后，自动实现http到https的跳转，代替了Web服务器进行301/302重定向的工作。<br>于是乎，Nginx配置文件中的</p>
-<p><pre><br>return 301 <a href="https://$server_name$request_uri" target="_blank" rel="external">https://$server_name$request_uri</a>;<br></pre><br>会在首次访问之后变得多余，因此，可以单独写一个Nginx配置文件，来实现首次访问时http到https的重定向：</p>
-<p><pre><br>server {<br>        listen 80;<br>        listen [::]:80 ipv6only=on;<br>        server_name  zyx.im www.zyx.im;<br>        return 301 <a href="https://$server_name$request_uri" target="_blank" rel="external">https://$server_name$request_uri</a>;<br>        server_tokens   off;<br>}<br></pre><br><strong>隐藏服务器版本号信息</strong><br>观察本博客的请求响应头，会发现这一行<code>server:nginx</code>，而Nginx的具体版本号并没有说明，由于某些 Nginx 漏洞只存在于特定的版本，隐藏版本号可以提高安全性。实现的方法很简单，只需在博客的Nginx配置文件中加入：</p>
-<p><pre><br>server_tokens off;<br></pre><br>因为本站使用Ghost，通过Nginx反向代理进行访问，所以还需要加上如下配置：</p>
-<p><pre><br>proxy_hide_header X-Powered-By;<br></pre><br><strong>增加https的安全性</strong><br>为了确保更强的安全性，采取了<a href="https://zh.wikipedia.org/wiki/%E8%BF%AA%E8%8F%B2%EF%BC%8D%E8%B5%AB%E5%B0%94%E6%9B%BC%E5%AF%86%E9%92%A5%E4%BA%A4%E6%8D%A2" target="_blank" rel="external">迪菲－赫尔曼密钥交换</a>：<br>在/etc/nginx/ssl目录下生成dhparam.pem:  </p>
-<p><pre><br>openssl dhparam -out dhparam.pem 2048<br></pre><br>如果你对保密性要求高，而且服务器性能足够强，那么可以生成4096位的加密，本站采用了4096位加密，整个生成过程似乎只用了二十来分钟。<br><img src="https://dn-izyx.qbox.me/content/images/2016/01/logs/CPU-usage.PNG" alt="CPU usage"><br>生成完毕后，在配置文件中加入如下内容：</p>
-<p><pre><br> ssl_prefer_server_ciphers on;<br> ssl_dhparam /etc/ssl/certs/dhparam.pem;<br> ssl_protocols TLSv1 TLSv1.1 TLSv1.2;<br> ssl_ciphers “EECDH+ECDSA+AESGCM EECDH+aRSA+AESGCM EECDH+ECDSA+SHA384 EECDH+ECDSA+SHA256 EECDH+aRSA+SHA384 EECDH+aRSA+SHA256 EECDH+aRSA+RC4 EECDH EDH+aRSA !aNULL !eNULL !LOW !3DES !MD5 !EXP !PSK !SRP !DSS !RC4”;<br> keepalive_timeout 70;<br> ssl_session_cache shared:SSL:10m;<br> ssl_session_timeout 10m;<br></pre><br>重启即可。</p>
-<p>完成上述工作后，我去<a href="https://www.ssllabs.com/ssltest/analyze.html?d=zyx.im&amp;hideResults=on" target="_blank" rel="external">SSL Labs</a>测试了一下，结果不错：A+。<br><img src="https://dn-izyx.qbox.me/content/images/2016/01/logs/SSL-Labs-result.PNG" alt=""></p>
-<p>参考：<br><em><a href="https://s.how/nginx-ssl/" target="_blank" rel="external">Nginx 配置 SSL 证书 + 搭建 HTTPS 网站教程</a>  
-</em><a href="https://www.textarea.com/zhicheng/fenxiang-yige-https-a-di-nginx-peizhi-320/" target="_blank" rel="external">分享一个 HTTPS A+ 的 nginx 配置</a><br><em><a href="https://www.pupboss.com/nginx-add-ssl/" target="_blank" rel="external">Nginx 配置上更安全的 SSL &amp; ECC 证书</a>  
-</em><a href="https://imququ.com/post/web-security-and-response-header.html#toc-1" target="_blank" rel="external">一些安全相关的HTTP响应头</a>  </p>
-
+<p><pre>add_header Strict-Transport-Security “max-age=63072000; preload”;<br></pre><br>这样做，可以使支持HSTS的浏览器在遇到这个响应头的时候，把当前网站加入HSTS列表，然后在max-age指定的秒数内，当前网站所有请求都会被重定向为https。即使用户主动输入http:或者不输入协议部分，都将重定向到https:地址。这样做可以让浏览器在首次访问本站点后，自动实现http到https的跳转，代替了Web服务器进行301/302重定向的工作。<br>
+        
+          <p class="article-more-link">
+            <a href="/blogs/improvement-of-security-of-the-sites/#more">Read More...</a>
+          </p>
+        
       
     </div>
   
