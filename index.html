@@ -66,6 +66,64 @@ ga('send', 'pageview');
   </div>
 </header>
     <section id="main" class="outer">
+      <article id="post-shadowsocks-server install and config" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blogs/shadowsocks-server install and config/">Shadowsocks服务端的安装与配置</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      <a href="/blogs/shadowsocks-server install and config/" class="article-date">
+  <time datetime="2016-01-08T06:18:52.000Z" itemprop="datePublished">2016-01-08</time>
+</a>
+      
+      
+        <div class="article-comment-link-wrap">
+          <a href="http://hidasia.github.io//blogs/shadowsocks-server install and config/#disqus_thread" class="article-comment-link">评论</a>
+        </div>
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h5>安装</h5><br>在Debian/Ubuntu下:<br><pre><br>apt-get install python-pip python-m2crypto<br>pip install shadowsocks<br></pre><br>在CentOS下：<br><pre><br>yum install python-setuptools m2crypto &amp;&amp; easy_install pip<br>pip install shadowsocks<br></pre><br><br><h5>配置</h5>  
+
+<h6>快速配置</h6>  
+
+<p>静待安装完成（很快），之后输入如下命令即可对Shadowsocks进行简易配置以使其工作：  </p>
+<p><pre><br>sudo ssserver -p 443 -k password -m aes-256-cfb —user nobody -d start<br></pre><br>其中，<br><code>-p 443</code> 设置服务器端口（SERVER_PORT）为：<code>443</code>，<br><code>-k password</code> 443端口的密码（PASSWORD）：<code>password</code>，<br><code>-m aes-256-cfb</code> 设置加密策略（METHOD）：<code>aes-256-cfb</code>，<code>aes-256-cfb</code>为Shadowsocks的默认加密策略，更多加密策略信息<a href="https://github.com/shadowsocks/shadowsocks/wiki/Encryption" target="_blank" rel="external">点此</a>。<br>如果想了解ssserver的所有选项，可以输入：<code>ssserver -h</code>查询。  </p>
+<p></p><h6>详细配置</h6><br>另外，亦可通过手动写入配置文件来配置Shadowsocks。<br>在/etc目录下新建shadowsocks.json文件：<br>内容示例：  <p></p>
+<p><pre><br>{<br>    “server”:”my_server_ip”,<br>    “server_port”:8388,<br>    “local_address”: “127.0.0.1”,<br>    “local_port”:1080,<br>    “password”:”mypassword”,<br>    “timeout”:300,<br>    “method”:”aes-256-cfb”,<br>    “fast_open”: false<br>}<br></pre><br>将<code>my_server_ip</code>替换为替换为当前VPS的IP地址。  </p>
+<p></p><h6>ipv6支持</h6><br>如果希望Shadowsocks启用ipv6访问（前提是VPS自身支持ipv6），可以将server配置改成：<p></p>
+<p><pre><br>“server”:”::”,<br></pre></p>
+<p></p><h6>多用户</h6><br>如果该Shadowsocks为多个人共同使用，那么设置多端口会方便管理，即：使用户拥有属于自己的端口和密码：<br>将上述示例的<code>&quot;password&quot;</code>配置去掉，并加入如下配置（示例）：  <p></p>
+<p><pre><br>“port_password”:<br>{<br>    “20000”: “password0”,<br>    “20001”: “password1”,<br>    “20002”: “password2”,<br>}<br>“_comment”:<br>{<br>    “20000”: “userA”,<br>    “20001”: “userB”,<br>    “20002”: “userC”,<br>}<br></pre><br>注意： json文件中最后一行配置不加<code>,</code>。  </p>
+<p></p><h5>启动与停止</h5><br>前台运行：<br><code>ssserver -c /etc/shadowsocks.json</code><br>后台运行：<br><code>ssserver -c /etc/shadowsocks.json -d start</code><br><code>ssserver -c /etc/shadowsocks.json -d stop</code><p></p>
+<p></p><h5>相关下载</h5><br><a href="https://dn-izyx.qbox.me/offthewall/ss.apk" target="_blank" rel="external">Shadowsocks for Android</a><br><a href="https://dn-izyx.qbox.me/offthewall/ss.zip" target="_blank" rel="external">Shadowsocks for Windows</a>   <p></p>
+<p></p><h5>VPS推荐</h5><br>通过以下链接购买任意一家服务商的VPS，你我均可获赠一定的使用金额、折扣或者优惠：<br><a href="https://www.digitalocean.com/?refcode=3465ae8fb67a" target="_blank" rel="external">Digital Ocean</a><br><a href="http://www.vultr.com/?ref=6846816" target="_blank" rel="external">Vultr</a><br><a href="https://bandwagonhost.com/aff.php?aff=6248" target="_blank" rel="external">Bandwagonhost</a><br><br><br><br><br><br><br>另：文章如有纰漏，敬请指正！<p></p>
+
+      
+    </div>
+  
+    <footer class="article-footer">
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/GFW/">GFW</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Server/">Server</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Shadowsocks/">Shadowsocks</a></li></ul>
+
+    </footer>
+  
+  </div>
+  
+</article>
+
+
+    
       <article id="post-chrome-app-launcher-setup" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
     
