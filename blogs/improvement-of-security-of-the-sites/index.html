@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>对站点安全性的优化 - His Tech Version</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="注：以下内容所指站点为：the Barrens  
+启用HSTS在本站的Nginx配置文件中，加入：
+add_header Strict-Transport-Security “max-age=63072000; preload”;这样做，可以使支持HSTS的浏览器在遇到这个响应头的时候，把当前网站加入HSTS列表，然后在max-age指定的秒数内，当前网站所有请求都会被重定向为https。即使用">
+<meta property="og:type" content="article">
+<meta property="og:title" content="对站点安全性的优化">
+<meta property="og:url" content="http://hidasia.github.io/blogs/improvement-of-security-of-the-sites/index.html">
+<meta property="og:site_name" content="His Tech Version">
+<meta property="og:description" content="注：以下内容所指站点为：the Barrens  
+启用HSTS在本站的Nginx配置文件中，加入：
+add_header Strict-Transport-Security “max-age=63072000; preload”;这样做，可以使支持HSTS的浏览器在遇到这个响应头的时候，把当前网站加入HSTS列表，然后在max-age指定的秒数内，当前网站所有请求都会被重定向为https。即使用">
+<meta property="og:image" content="https://dn-izyx.qbox.me/content/images/2016/01/logs/CPU-usage.PNG">
+<meta property="og:image" content="https://dn-izyx.qbox.me/content/images/2016/01/logs/SSL-Labs-result.PNG">
+<meta property="og:updated_time" content="2016-01-08T16:12:05.932Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="对站点安全性的优化">
+<meta name="twitter:description" content="注：以下内容所指站点为：the Barrens  
+启用HSTS在本站的Nginx配置文件中，加入：
+add_header Strict-Transport-Security “max-age=63072000; preload”;这样做，可以使支持HSTS的浏览器在遇到这个响应头的时候，把当前网站加入HSTS列表，然后在max-age指定的秒数内，当前网站所有请求都会被重定向为https。即使用">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="/webfonts/ptserif/main.css" rel='stylesheet' type='text/css'>
+  <link href="/webfonts/source-code-pro/main.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-72039031-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+</head>
+<body>
+  <div id="container">
+    <header id="header">
+  <div id="header-outer" class="outer">
+    <div id="header-inner" class="inner">
+      <a id="main-nav-toggle" class="nav-icon"></a>
+      <a id="logo" class="logo" href="/"></a>
+      <nav id="main-nav">
+        
+          <a class="main-nav-link" href="/">首页</a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+          <a class="main-nav-link" href="/categories">分类</a>
+        
+          <a class="main-nav-link" href="/tags">标签</a>
+        
+          <a class="main-nav-link" href="/about">关于</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        <div id="search-form-wrap">
+          <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://hidasia.github.io"></form>
+        </div>
+      </nav>
+    </div>
+  </div>
+</header>
+    <section id="main" class="outer"><article id="post-improvement-of-security-of-the-sites" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      对站点安全性的优化
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      <a href="/blogs/improvement-of-security-of-the-sites/" class="article-date">
+  <time datetime="2016-01-08T16:08:53.000Z" itemprop="datePublished">2016-01-09</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Server-Nginx-Https/">Server,Nginx,Https</a>
+  </div>
+
+      
+        <div class="article-comment-link-wrap">
+          <a href="http://hidasia.github.io//blogs/improvement-of-security-of-the-sites/#disqus_thread" class="article-comment-link">评论</a>
+        </div>
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>注：以下内容所指站点为：<a href="https://zyx.im" target="_blank" rel="external">the Barrens</a>  </p>
+<p><strong>启用HSTS</strong><br>在本站的Nginx配置文件中，加入：</p>
+<p><pre>add_header Strict-Transport-Security “max-age=63072000; preload”;<br></pre><br>这样做，可以使支持HSTS的浏览器在遇到这个响应头的时候，把当前网站加入HSTS列表，然后在max-age指定的秒数内，当前网站所有请求都会被重定向为https。即使用户主动输入http:或者不输入协议部分，都将重定向到https:地址。这样做可以让浏览器在首次访问本站点后，自动实现http到https的跳转，代替了Web服务器进行301/302重定向的工作。<br>于是乎，Nginx配置文件中的</p>
+<p><pre><br>return 301 <a href="https://$server_name$request_uri" target="_blank" rel="external">https://$server_name$request_uri</a>;<br></pre><br>会在首次访问之后变得多余，因此，可以单独写一个Nginx配置文件，来实现首次访问时http到https的重定向：</p>
+<p><pre><br>server {<br>        listen 80;<br>        listen [::]:80 ipv6only=on;<br>        server_name  zyx.im www.zyx.im;<br>        return 301 <a href="https://$server_name$request_uri" target="_blank" rel="external">https://$server_name$request_uri</a>;<br>        server_tokens   off;<br>}<br></pre><br><strong>隐藏服务器版本号信息</strong><br>观察本博客的请求响应头，会发现这一行<code>server:nginx</code>，而Nginx的具体版本号并没有说明，由于某些 Nginx 漏洞只存在于特定的版本，隐藏版本号可以提高安全性。实现的方法很简单，只需在博客的Nginx配置文件中加入：</p>
+<p><pre><br>server_tokens off;<br></pre><br>因为本站使用Ghost，通过Nginx反向代理进行访问，所以还需要加上如下配置：</p>
+<p><pre><br>proxy_hide_header X-Powered-By;<br></pre><br><strong>增加https的安全性</strong><br>为了确保更强的安全性，采取了<a href="https://zh.wikipedia.org/wiki/%E8%BF%AA%E8%8F%B2%EF%BC%8D%E8%B5%AB%E5%B0%94%E6%9B%BC%E5%AF%86%E9%92%A5%E4%BA%A4%E6%8D%A2" target="_blank" rel="external">迪菲－赫尔曼密钥交换</a>：<br>在/etc/nginx/ssl目录下生成dhparam.pem:  </p>
+<p><pre><br>openssl dhparam -out dhparam.pem 2048<br></pre><br>如果你对保密性要求高，而且服务器性能足够强，那么可以生成4096位的加密，本站采用了4096位加密，整个生成过程似乎只用了二十来分钟。<br><img src="https://dn-izyx.qbox.me/content/images/2016/01/logs/CPU-usage.PNG" alt="CPU usage"><br>生成完毕后，在配置文件中加入如下内容：</p>
+<p><pre><br> ssl_prefer_server_ciphers on;<br> ssl_dhparam /etc/ssl/certs/dhparam.pem;<br> ssl_protocols TLSv1 TLSv1.1 TLSv1.2;<br> ssl_ciphers “EECDH+ECDSA+AESGCM EECDH+aRSA+AESGCM EECDH+ECDSA+SHA384 EECDH+ECDSA+SHA256 EECDH+aRSA+SHA384 EECDH+aRSA+SHA256 EECDH+aRSA+RC4 EECDH EDH+aRSA !aNULL !eNULL !LOW !3DES !MD5 !EXP !PSK !SRP !DSS !RC4”;<br> keepalive_timeout 70;<br> ssl_session_cache shared:SSL:10m;<br> ssl_session_timeout 10m;<br></pre><br>重启即可。</p>
+<p>完成上述工作后，我去<a href="https://www.ssllabs.com/ssltest/analyze.html?d=zyx.im&amp;hideResults=on" target="_blank" rel="external">SSL Labs</a>测试了一下，结果不错：A+。<br><img src="https://dn-izyx.qbox.me/content/images/2016/01/logs/SSL-Labs-result.PNG" alt=""></p>
+<p>参考：<br><em><a href="https://s.how/nginx-ssl/" target="_blank" rel="external">Nginx 配置 SSL 证书 + 搭建 HTTPS 网站教程</a>  
+</em><a href="https://www.textarea.com/zhicheng/fenxiang-yige-https-a-di-nginx-peizhi-320/" target="_blank" rel="external">分享一个 HTTPS A+ 的 nginx 配置</a><br><em><a href="https://www.pupboss.com/nginx-add-ssl/" target="_blank" rel="external">Nginx 配置上更安全的 SSL &amp; ECC 证书</a>  
+</em><a href="https://imququ.com/post/web-security-and-response-header.html#toc-1" target="_blank" rel="external">一些安全相关的HTTP响应头</a>  </p>
+
+      
+    </div>
+  
+    <footer class="article-footer">
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/网站优化/">网站优化</a></li></ul>
+
+    </footer>
+  
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/blogs/shadowsocks-server install and config/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Shadowsocks服务端的安装与配置&nbsp;<span>&gt;</span></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+</section>
+    <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 Emerald Dream.
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>.    a Github Page
+    </div>
+  </div>
+</footer>
+    
+<script>
+  var disqus_shortname = 'tech-zyx';
+  
+  var disqus_url = 'http://hidasia.github.io//blogs/improvement-of-security-of-the-sites/';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<script src="/js/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+
+<script src="/js/script.js" type="text/javascript"></script>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-65033741-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+  </div>
+</body>
+</html>
