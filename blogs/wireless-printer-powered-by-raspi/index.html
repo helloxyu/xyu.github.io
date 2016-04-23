@@ -3,36 +3,18 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Nginx下配置WordPress的伪静态规则 - His Tech Version</title>
+  <title>通过树莓派实现局域网内的无线打印 - His Tech Version</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="在Nginx目录下打开站点的配置文件（*.conf），在server{}里添加如下代码： 
-
-location / {
-if (-f $request_filename/index.html){
-                rewrite (.*) $1/index.html break;
-        }
-if (-f $request_filename/index.php){">
+  <meta name="description" content="Emerald Dream">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Nginx下配置WordPress的伪静态规则">
-<meta property="og:url" content="http://hidasia.github.io/blogs/wordpress-rewrite-nginx/index.html">
+<meta property="og:title" content="通过树莓派实现局域网内的无线打印">
+<meta property="og:url" content="http://hidasia.github.io/blogs/wireless-printer-powered-by-raspi/index.html">
 <meta property="og:site_name" content="His Tech Version">
-<meta property="og:description" content="在Nginx目录下打开站点的配置文件（*.conf），在server{}里添加如下代码： 
-
-location / {
-if (-f $request_filename/index.html){
-                rewrite (.*) $1/index.html break;
-        }
-if (-f $request_filename/index.php){">
-<meta property="og:updated_time" content="2016-04-23T15:00:35.488Z">
+<meta property="og:description" content="Emerald Dream">
+<meta property="og:updated_time" content="2016-04-23T15:02:38.698Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Nginx下配置WordPress的伪静态规则">
-<meta name="twitter:description" content="在Nginx目录下打开站点的配置文件（*.conf），在server{}里添加如下代码： 
-
-location / {
-if (-f $request_filename/index.html){
-                rewrite (.*) $1/index.html break;
-        }
-if (-f $request_filename/index.php){">
+<meta name="twitter:title" content="通过树莓派实现局域网内的无线打印">
+<meta name="twitter:description" content="Emerald Dream">
   
   
     <link rel="icon" href="/favicon.png">
@@ -84,7 +66,7 @@ ga('send', 'pageview');
     </div>
   </div>
 </header>
-    <section id="main" class="outer"><article id="post-wordpress-rewrite-nginx" class="article article-type-post" itemscope itemprop="blogPost">
+    <section id="main" class="outer"><article id="post-wireless-printer-powered-by-raspi" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
     
     
@@ -92,53 +74,36 @@ ga('send', 'pageview');
         
   
     <h1 class="article-title" itemprop="name">
-      Nginx下配置WordPress的伪静态规则
+      通过树莓派实现局域网内的无线打印
     </h1>
   
 
       </header>
     
     <div class="article-meta">
-      <a href="/blogs/wordpress-rewrite-nginx/" class="article-date">
-  <time datetime="2015-09-24T12:19:23.000Z" itemprop="datePublished">2015-09-24</time>
+      <a href="/blogs/wireless-printer-powered-by-raspi/" class="article-date">
+  <time datetime="2016-04-23T14:57:27.000Z" itemprop="datePublished">2016-04-23</time>
 </a>
       
   <div class="article-category">
-    <a class="article-category-link" href="/categories/Server/">Server</a>
+    <a class="article-category-link" href="/categories/RaspberryPi/">RaspberryPi</a>
   </div>
 
       
         <div class="article-comment-link-wrap">
-          <a href="http://hidasia.github.io//blogs/wordpress-rewrite-nginx/#disqus_thread" class="article-comment-link">评论</a>
+          <a href="http://hidasia.github.io//blogs/wireless-printer-powered-by-raspi/#disqus_thread" class="article-comment-link">评论</a>
         </div>
       
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <p>在Nginx目录下打开站点的配置文件（<em>*</em>.conf），在server{}里添加如下代码： </p>
-<pre>
-location / {
-if (-f $request_filename/index.html){
-                rewrite (.*) $1/index.html break;
-        }
-if (-f $request_filename/index.php){
-                rewrite (.*) $1/index.php;
-        }
-if (!-f $request_filename){
-                rewrite (.*) /index.php;
-        }
-}
-</pre>
-
-<p>PS 若  </p>
-<p><pre><br>location /{}<br></pre><br>已经存在，则直接添加括号内代码即可。</p>
-
+        
       
     </div>
   
     <footer class="article-footer">
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Nginx/">Nginx</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/WordPress/">WordPress</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DIY/">DIY</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/云打印/">云打印</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/打印机/">打印机</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/树莓派/">树莓派</a></li></ul>
 
     </footer>
   
@@ -147,17 +112,9 @@ if (!-f $request_filename){
     
 <nav id="article-nav">
   
-    <a href="/blogs/back/" id="article-nav-newer" class="article-nav-link-wrap">
-      <div class="article-nav-title"><span>&lt;</span>&nbsp;
-        
-          back
-        
-      </div>
-    </a>
   
-  
-    <a href="/blogs/wordpress-owner/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">关于初装WordPress后出现的权限问题&nbsp;<span>&gt;</span></div>
+    <a href="/blogs/Shadowsocks-on-Windows/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Shadowsocks-on-Windows&nbsp;<span>&gt;</span></div>
     </a>
   
 </nav>
@@ -185,7 +142,7 @@ if (!-f $request_filename){
 <script>
   var disqus_shortname = 'tech-zyx';
   
-  var disqus_url = 'http://hidasia.github.io//blogs/wordpress-rewrite-nginx/';
+  var disqus_url = 'http://hidasia.github.io//blogs/wireless-printer-powered-by-raspi/';
   
   (function(){
     var dsq = document.createElement('script');
