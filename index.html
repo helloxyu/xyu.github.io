@@ -97,7 +97,7 @@ ga('send', 'pageview');
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <p>前两天通过RaspberryPi 2B让一台HP Laserjet 1020 Plus接入到了宿舍的局域网中，实现了打印机的共享使用。<br>此功能在树莓派官方系统Raspbian环境下实现。<br>步骤如下：<br><strong>Step 1：安装CUPS</strong><br>CUPS（以前为 Common Unix Printing System，UNIX 通用打印系统的缩写，但现无官方全名）是一个类Unix操作系统的组合式印刷系统，允许一台电脑作为打印服务器。CUPS接受一个客户端的电脑进程，并送到相应的打印机。更多关于CUPS的信息请参阅<img src="https://en.wikipedia.org/wiki/CUPS" alt="CUPS - Wikipedia, the free encyclopedia">  </p>
+        <p>前两天通过RaspberryPi 2B让一台HP Laserjet 1020 Plus接入到了宿舍的局域网中，实现了打印机的共享使用。<br>此功能在树莓派官方系统Raspbian环境下实现。<br>步骤如下：<br><strong>Step 1：安装CUPS</strong><br>CUPS（以前为 Common Unix Printing System，UNIX 通用打印系统的缩写，但现无官方全名）是一个类Unix操作系统的组合式印刷系统，允许一台电脑作为打印服务器。CUPS接受一个客户端的电脑进程，并送到相应的打印机。更多关于CUPS的信息请参阅<a href="https://en.wikipedia.org/wiki/CUPS" target="_blank" rel="external">CUPS - Wikipedia, the free encyclopedia</a>  </p>
 <p><pre><br>sudo apt-get install -y cups cups-pdf cups-bsd<br></pre><br>在CUPS安装完毕后，输入下列命令：  </p>
 <p><pre><br>sudo usermod -a -G lpadmin pi<br></pre><br>该命令的含义是将用户pi添加到local-preference管理员组里，以使用户pi有权限对CUPS进行配置。<br>修改CUPS配置文件：  </p>
 <p><pre><br>sudo nano /etc/cups/cupsd.conf<br></pre><br>该配置文件中需要进行四处修改：<br>1.将该行<code>Listen localhost:631</code>的’localhost: ‘去掉，仅保留631。<br>2,3,4.在三个<code></code>前面加上<code>Allow @LOCAL</code>，让网络用户拥有管理权限（使局域网内的非树莓派主机可以对打印机进行管理）。<br>完成上述修改后，重启CUPS  </p>
