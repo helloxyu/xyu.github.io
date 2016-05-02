@@ -5,19 +5,25 @@
   
   <title>通过树莓派实现局域网内共享打印机 - His Tech Version</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="前两天通过RaspberryPi 2B让一台HP Laserjet 1020 Plus接入到了宿舍的局域网中，实现了打印机的共享使用。此功能在树莓派官方系统Raspbian环境下实现。步骤如下：Step 1：安装CUPSCUPS（以前为 Common Unix Printing System，UNIX 通用打印系统的缩写，但现无官方全名）是一个类Unix操作系统的组合式印刷系统，允许一台电脑作为打">
+  <meta name="description" content="前两天通过RaspberryPi 2B让一台HP Laserjet 1020 Plus接入到了宿舍的局域网中，实现了打印机的共享使用。此功能在树莓派官方系统Raspbian环境下实现。步骤如下：  
+Step 1：安装CUPS  
+CUPS（以前为 Common Unix Printing System，UNIX 通用打印系统的缩写，但现无官方全名）是一个类Unix操作系统的组合式印刷系统，允许一">
 <meta property="og:type" content="article">
 <meta property="og:title" content="通过树莓派实现局域网内共享打印机">
 <meta property="og:url" content="http://hidasia.github.io/blogs/wireless-printer-powered-by-raspi/index.html">
 <meta property="og:site_name" content="His Tech Version">
-<meta property="og:description" content="前两天通过RaspberryPi 2B让一台HP Laserjet 1020 Plus接入到了宿舍的局域网中，实现了打印机的共享使用。此功能在树莓派官方系统Raspbian环境下实现。步骤如下：Step 1：安装CUPSCUPS（以前为 Common Unix Printing System，UNIX 通用打印系统的缩写，但现无官方全名）是一个类Unix操作系统的组合式印刷系统，允许一台电脑作为打">
+<meta property="og:description" content="前两天通过RaspberryPi 2B让一台HP Laserjet 1020 Plus接入到了宿舍的局域网中，实现了打印机的共享使用。此功能在树莓派官方系统Raspbian环境下实现。步骤如下：  
+Step 1：安装CUPS  
+CUPS（以前为 Common Unix Printing System，UNIX 通用打印系统的缩写，但现无官方全名）是一个类Unix操作系统的组合式印刷系统，允许一">
 <meta property="og:image" content="http://hidasia.github.io/imgs/CUPS-caution.JPG">
 <meta property="og:image" content="http://hidasia.github.io/imgs/add-printer-on-win.png">
 <meta property="og:image" content="http://hidasia.github.io/imgs/choose-driver.png">
-<meta property="og:updated_time" content="2016-05-02T03:34:53.600Z">
+<meta property="og:updated_time" content="2016-05-02T03:49:54.783Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="通过树莓派实现局域网内共享打印机">
-<meta name="twitter:description" content="前两天通过RaspberryPi 2B让一台HP Laserjet 1020 Plus接入到了宿舍的局域网中，实现了打印机的共享使用。此功能在树莓派官方系统Raspbian环境下实现。步骤如下：Step 1：安装CUPSCUPS（以前为 Common Unix Printing System，UNIX 通用打印系统的缩写，但现无官方全名）是一个类Unix操作系统的组合式印刷系统，允许一台电脑作为打">
+<meta name="twitter:description" content="前两天通过RaspberryPi 2B让一台HP Laserjet 1020 Plus接入到了宿舍的局域网中，实现了打印机的共享使用。此功能在树莓派官方系统Raspbian环境下实现。步骤如下：  
+Step 1：安装CUPS  
+CUPS（以前为 Common Unix Printing System，UNIX 通用打印系统的缩写，但现无官方全名）是一个类Unix操作系统的组合式印刷系统，允许一">
   
   
     <link rel="icon" href="/favicon.png">
@@ -100,7 +106,9 @@ ga('send', 'pageview');
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <p>前两天通过RaspberryPi 2B让一台HP Laserjet 1020 Plus接入到了宿舍的局域网中，实现了打印机的共享使用。<br>此功能在树莓派官方系统Raspbian环境下实现。<br>步骤如下：<br><strong>Step 1：安装CUPS</strong><br>CUPS（以前为 Common Unix Printing System，UNIX 通用打印系统的缩写，但现无官方全名）是一个类Unix操作系统的组合式印刷系统，允许一台电脑作为打印服务器。CUPS接受一个客户端的电脑进程，并送到相应的打印机。更多关于CUPS的信息请参阅<a href="https://en.wikipedia.org/wiki/CUPS" target="_blank" rel="external">CUPS - Wikipedia, the free encyclopedia</a>  </p>
+        <p>前两天通过RaspberryPi 2B让一台HP Laserjet 1020 Plus接入到了宿舍的局域网中，实现了打印机的共享使用。<br>此功能在树莓派官方系统Raspbian环境下实现。<br>步骤如下：  </p>
+<p><strong>Step 1：安装CUPS</strong>  </p>
+<p>CUPS（以前为 Common Unix Printing System，UNIX 通用打印系统的缩写，但现无官方全名）是一个类Unix操作系统的组合式印刷系统，允许一台电脑作为打印服务器。CUPS接受一个客户端的电脑进程，并送到相应的打印机。更多关于CUPS的信息请参阅<a href="https://en.wikipedia.org/wiki/CUPS" target="_blank" rel="external">CUPS - Wikipedia, the free encyclopedia</a>  </p>
 <pre>
 sudo apt-get install -y cups cups-pdf cups-bsd
 </pre>
@@ -119,18 +127,11 @@ sudo nano /etc/cups/cupsd.conf
 完成上述修改后，重启CUPS  
 <pre>
 sudo service cups restart
-</pre>
-至此，对CUPS的安装完成。这时，可以在浏览器中输入
-<code>
-http://your-raspi-pi:631/
-</code>
-对树莓派上的CUPS服务进行访问。 
+</pre>  
 
-<a id="more"></a>  
-**Step 2：安装相应的打印机驱动(foo2zjs)**
-仍然以HP Laserjet 1020 Plus为例。  
->foo2zjs is an open source printer driver for printers that use the Zenographics ZjStream wire protocol for their print data.  
-由其官网信息可知，foo2zjs是一款开源的打印机驱动。该驱动的安装方式如下：    
+<p>至此，对CUPS的安装完成。这时，可以在浏览器中输入<br><code><a href="http://your-raspi-pi:631/" target="_blank" rel="external">http://your-raspi-pi:631/</a></code><br>对树莓派上的CUPS服务进行访问。    </p>
+<p><strong>Step 2：安装相应的打印机驱动</strong></p>
+<p>仍然以HP Laserjet 1020 Plus为例。<br>“foo2zjs is an open source printer driver for printers that use the Zenographics ZjStream wire protocol for their print data.”。由其<a href="http://foo2zjs.rkkda.com/" target="_blank" rel="external">官网</a>信息可知，foo2zjs是一款开源的打印机驱动。该驱动的安装方式如下：    </p>
 <pre>
 下载：wget -O foo2zjs.tar.gz http://foo2zjs.rkkda.com/foo2zjs.tar.gz
 解压：tar zxf foo2zjs.tar.gz
@@ -143,7 +144,10 @@ http://your-raspi-pi:631/
 重启CUPS：sudo /etc/init.d/cups restart
 </pre>
 
-<p><strong>Step 3: 在CUPS中添加打印机</strong><br>在浏览器中打开CUPS的管理页面：<br><code><a href="http://your-raspi-pi:631/" target="_blank" rel="external">http://your-raspi-pi:631/</a></code><br>一次点击如下链接/按钮：<br>Administration - Add Printer<br>此时页面会出现提示，要求你用https访问该页面<br><img src="/imgs/CUPS-caution.JPG" alt="Upgrade Required"><br>点击网页给出的链接即可，忽略浏览器提示的链接可能不安全的警告，在接下来弹出的对话框中，用户名输入pi，密码为pi所对应的密码（用ssh登陆树莓派时的账号和密码）。<br>选择你的打印机，点击Continue。在下一个页面中选择Share This Printer，点击Continue。在Model里选择打印机相应的驱动，点击Add printer。点击Set Default Options，然后点击你安装的打印机，进入到你的打印机页面，在第二个下拉菜单(Administration)中选择’Set As Server Default’。<br>至此，你的打印机在CUPS上安装完毕。你可以切换到ssh，输入lpq查看打印机的状态。<br><strong>Step 4：在Windows中添加网络打印机</strong><br>以Windows 10为例。<br>设置 - 设备 - 添加打印机或扫描仪 - 我需要的打印机不在列表中：<br><img src="/imgs/add-printer-on-win.png" alt="Add Network Printer on Windows"><br>选中 按名称选择共享打印机 并输入<code><a href="http://your-raspi-pi:631/printers/HP_LaserJet_1020" target="_blank" rel="external">http://your-raspi-pi:631/printers/HP_LaserJet_1020</a></code>，下一步。<br><img src="/imgs/choose-driver.png" alt="Install Network Printer Driver"><br>如果在列表中找不到相应的打印机驱动，你需要先安装该打印机驱动的Windows版本。重新启动电脑后再进行此步骤。<br>安装完成后，打印测试页，如果测试页成功打印，即说明所有步骤均已完成且安装成功。</p>
+<p><strong>Step 3: 在CUPS中添加打印机</strong>  </p>
+<p>在浏览器中打开CUPS的管理页面：<br><code><a href="http://your-raspi-pi:631/" target="_blank" rel="external">http://your-raspi-pi:631/</a></code><br>一次点击如下链接/按钮：<br>Administration - Add Printer<br>此时页面会出现提示，要求你用https访问该页面<br><img src="/imgs/CUPS-caution.JPG" alt="Upgrade Required"><br>点击网页给出的链接即可，忽略浏览器提示的链接可能不安全的警告，在接下来弹出的对话框中，用户名输入pi，密码为pi所对应的密码（用ssh登陆树莓派时的账号和密码）。<br>选择你的打印机，点击Continue。在下一个页面中选择Share This Printer，点击Continue。在Model里选择打印机相应的驱动，点击Add printer。点击Set Default Options，然后点击你安装的打印机，进入到你的打印机页面，在第二个下拉菜单(Administration)中选择’Set As Server Default’。<br>至此，你的打印机在CUPS上安装完毕。你可以切换到ssh，输入lpq查看打印机的状态。  </p>
+<p><strong>Step 4：在Windows中添加网络打印机</strong>    </p>
+<p>以Windows 10为例。<br>设置 - 设备 - 添加打印机或扫描仪 - 我需要的打印机不在列表中：<br><img src="/imgs/add-printer-on-win.png" alt="Add Network Printer on Windows"><br>选中 按名称选择共享打印机 并输入<code><a href="http://your-raspi-pi:631/printers/HP_LaserJet_1020" target="_blank" rel="external">http://your-raspi-pi:631/printers/HP_LaserJet_1020</a></code>，下一步。<br><img src="/imgs/choose-driver.png" alt="Install Network Printer Driver"><br>如果在列表中找不到相应的打印机驱动，你需要先安装该打印机驱动的Windows版本。重新启动电脑后再进行此步骤。<br>安装完成后，打印测试页，如果测试页成功打印，即说明所有步骤均已完成且安装成功。</p>
 <p><strong>参考自：</strong><br><a href="http://bayesky.com/index.php/archives/15/" target="_blank" rel="external">用树莓派做WiFi打印机</a><br><a href="http://bbs.ickey.cn/group-topic-id-48645.html" target="_blank" rel="external">树莓派打印机代理（上）——安装及配置</a></p>
 
       
