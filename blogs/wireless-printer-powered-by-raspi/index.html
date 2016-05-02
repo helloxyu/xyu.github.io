@@ -18,7 +18,7 @@ CUPS（以前为 Common Unix Printing System，UNIX 通用打印系统的缩写�
 <meta property="og:image" content="http://hidasia.github.io/imgs/CUPS-caution.JPG">
 <meta property="og:image" content="http://hidasia.github.io/imgs/add-printer-on-win.png">
 <meta property="og:image" content="http://hidasia.github.io/imgs/choose-driver.png">
-<meta property="og:updated_time" content="2016-05-02T03:49:54.783Z">
+<meta property="og:updated_time" content="2016-05-02T03:51:33.017Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="通过树莓派实现局域网内共享打印机">
 <meta name="twitter:description" content="前两天通过RaspberryPi 2B让一台HP Laserjet 1020 Plus接入到了宿舍的局域网中，实现了打印机的共享使用。此功能在树莓派官方系统Raspbian环境下实现。步骤如下：  
@@ -129,8 +129,7 @@ sudo nano /etc/cups/cupsd.conf
 sudo service cups restart
 </pre>  
 
-<p>至此，对CUPS的安装完成。这时，可以在浏览器中输入<br><code><a href="http://your-raspi-pi:631/" target="_blank" rel="external">http://your-raspi-pi:631/</a></code><br>对树莓派上的CUPS服务进行访问。    </p>
-<p><strong>Step 2：安装相应的打印机驱动</strong></p>
+<p>至此，对CUPS的安装完成。这时，可以在浏览器中输入<br><code><a href="http://your-raspi-pi:631/" target="_blank" rel="external">http://your-raspi-pi:631/</a></code><br>对树莓派上的CUPS服务进行访问。<br><a id="more"></a><br><strong>Step 2：安装相应的打印机驱动</strong></p>
 <p>仍然以HP Laserjet 1020 Plus为例。<br>“foo2zjs is an open source printer driver for printers that use the Zenographics ZjStream wire protocol for their print data.”。由其<a href="http://foo2zjs.rkkda.com/" target="_blank" rel="external">官网</a>信息可知，foo2zjs是一款开源的打印机驱动。该驱动的安装方式如下：    </p>
 <pre>
 下载：wget -O foo2zjs.tar.gz http://foo2zjs.rkkda.com/foo2zjs.tar.gz
