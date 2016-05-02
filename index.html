@@ -112,7 +112,7 @@ sudo nano /etc/cups/cupsd.conf
 </pre>
 该配置文件中需要进行四处修改：  
 1.将该行<code>Listen localhost:631</code>的'localhost: '去掉，仅保留631。  
-2,3,4.在三个<code></Location></code>前面加上<code>Allow @LOCAL</code>，让网络用户拥有管理权限（使局域网内的非树莓派主机可以对打印机进行管理）。  
+2,3,4.在三个<code>< /Location ></code>前面加上<code>Allow @LOCAL</code>，让网络用户拥有管理权限（使局域网内的非树莓派主机可以对打印机进行管理）。  
 完成上述修改后，重启CUPS  
 <pre>
 sudo service cups restart
