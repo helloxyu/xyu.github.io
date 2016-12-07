@@ -3,16 +3,16 @@
 <head>
   <meta charset="utf-8">
   
-  <title>the Barrens</title>
+  <title>Emerald Dream</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description">
 <meta property="og:type" content="website">
-<meta property="og:title" content="the Barrens">
+<meta property="og:title" content="Emerald Dream">
 <meta property="og:url" content="http://x.zyx.im/index.html">
-<meta property="og:site_name" content="the Barrens">
+<meta property="og:site_name" content="Emerald Dream">
 <meta property="og:description">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="the Barrens">
+<meta name="twitter:title" content="Emerald Dream">
 <meta name="twitter:description">
   
   
@@ -66,6 +66,304 @@ ga('send', 'pageview');
   </div>
 </header>
     <section id="main" class="outer">
+      <article id="post-android6-0-for-Nexus5" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blogs/android6-0-for-Nexus5/">android6.0_for_Nexus5</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      <a href="/blogs/android6-0-for-Nexus5/" class="article-date">
+  <time datetime="2016-12-07T15:38:51.000Z" itemprop="datePublished">2016-12-07</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Android/">Android</a>
+  </div>
+
+      
+        <div class="article-comment-link-wrap">
+          <a href="http://x.zyx.im//blogs/android6-0-for-Nexus5/#disqus_thread" class="article-comment-link">评论</a>
+        </div>
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>一切准备就绪后，使用<code>fast-all.bat</code>线刷系统往往会遇到以下两个问题。</p>
+<p><pre><br>error：update package missing system.img<br>或者是<br>error：update package missing boot.img<br></pre><br>个人认为使用这种脚本线刷倒不如自己手动输入指令来得实在，其实手动输入指令的方式也十分简单，下面以<code>hammerhead-mob31e</code>这个版本为例。</p>
+<p>按如下顺序一次执行如下命令：</p>
+<p><pre><br>fastboot flash bootloader bootloader-hammerhead-hhz20h.img<br>fastboot flash radio radio-hammerhead-m8974a-2.0.50.2.29.img<br></pre><br>刷入成功后重启bootloader模式，输入以下命令来重启bootloader：</p>
+<p><pre><br>fastboot reboot-bootloader<br></pre></p>
+<p><pre><br>fastboot flash recovery recovery.img<br>fastboot flash boot boot.img<br>fastboot flash system system.img<br></pre><br>如要清空数据（建议清空），还需输入以下两个镜像：</p>
+<p><pre><br>fastboot flash cache cache.img<br>fastboot flash userdata userdata.img<br></pre><br>完成。</p>
+
+      
+    </div>
+  
+    <footer class="article-footer">
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Nexus/">Nexus</a></li></ul>
+
+    </footer>
+  
+  </div>
+  
+</article>
+
+
+    
+      <article id="post-install-and-deploy-Ghost" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blogs/install-and-deploy-Ghost/">install_and_deploy_Ghost</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      <a href="/blogs/install-and-deploy-Ghost/" class="article-date">
+  <time datetime="2016-12-07T15:37:01.000Z" itemprop="datePublished">2016-12-07</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Server/">Server</a>
+  </div>
+
+      
+        <div class="article-comment-link-wrap">
+          <a href="http://x.zyx.im//blogs/install-and-deploy-Ghost/#disqus_thread" class="article-comment-link">评论</a>
+        </div>
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>这篇文章介绍如何在Linux服务器上从零开始搭建Ghost博客。  </p>
+<p>服务器信息：<br><a href="http://www.vultr.com/?ref=6846816" target="_blank" rel="external">Vultr-Tokyo</a>：<br>&nbsp;&nbsp;RAM: 768M<br>&nbsp;&nbsp;CPU: 1 Core<br>&nbsp;&nbsp;Storage: 15GB SSD<br>&nbsp;&nbsp;O/S: Debian 7 x64 (wheezy)</p>
+<p><strong>1. 安装Node.js</strong>  </p>
+<p>Ghost博客运行在Node.js之上，所以在服务器上搭建Ghost之前，需要先安装Node.js环境。下面采用编译源代码的方式安装。<br><a href="http://support.ghost.org/supported-node-versions/" target="_blank" rel="external">根据Ghost官方的建议</a>，我们选择Node.js Version 0.10.40。  </p>
+<p>1) 升级系统并在系统中安装好编译Node.js所需的环境</p>
+<pre>
+apt-get update
+apt-get install python gcc make g++
+</pre>
+
+<p>2) 获取Node.js的源代码  </p>
+<pre>
+wget https://nodejs.org/dist/v0.10.40/node-v0.10.40.tar.gz
+tar zxvf node-v0.10.40.tar.gz
+</pre>
+
+<p>3) 编译源代码<br>首先进入Node.js所在目录</p>
+<pre>
+cd node-v0.10.40.tar.gz
+</pre>
+编译
+<pre>
+./configure
+make install
+</pre>
+稍等片刻，Node.js即可安装成功。
+通过检测版本信息来验证Nodejs是否可以正常运行：  
+<pre>
+node -v
+</pre>
+如果输出`v 0.10.40`即说明Nodejs已运行。  
+
+**2. 安装Ghost**  
+
+1) 下载Ghost
+从官方源下载最新版的Ghost，<a title="2016年七月9日">当前</a>的最新版是v0.8.0。
+<pre>
+curl -L https://ghost.org/zip/ghost-latest.zip -o ghost.zip
+</pre>
+建议将Ghost解压到`/var/www/ghost`目录中（如果不存在`/var/www/`目录，请提前创建）：
+<pre>
+unzip -uo ghost.zip -d /var/www/ghost
+</pre>
+安装：
+<pre>
+cd /var/www/ghost
+npm install --production
+</pre>
+当该步骤完成以后，Ghost已经成功安装。  
+由于GFW的原因，国内的服务器很有可能无法成功安装Ghost所需的npm包，导致Ghost默认使用的数据库sqlite3丢失，从而使Ghost无也无法正常使用。我们可以自行安装Mysql并修改Ghost相关配置来解决这个问题，具体做法可以参考：  
+[使用MySQL驱动Ghost博客](https://zyx.im/a-ghost-blog-powered-by-mysql/)   
+
+**3.初次运行**  
+
+使Ghost在生产环境下运行
+<pre>
+npm start --production
+</pre>
+如果返回的命令如下，说明Ghost可以正常运行。  
+![Result](https://dn-izyx.qbox.me/content/images/2016/07/ssh%20result.JPG)
+~~现在，Ghost已经运行在了默认的端口`127.0.0.1:2368`。  
+·你可以在浏览器中输入`http://your-ip-address:2368`来访问Ghost。通过`http://your-ip-address:2368/ghost`来对你的博客进行相关设置和自定义。~~
+
+**4. 对Ghost进行一些必要的配置**  
+
+1) 在你第一次运行Ghost后，Ghost所在目录下会产生两个文件`config.js`和`index.js`。你可以在`config.js`中对Ghost进行一些底层的配置，如URL、数据库、邮件服务器等等。其中最最重要的配置便是将Ghost的URL换成自定义的地址。例如：
+<pre>
+    production: {
+        url: 'http://jp.ss.zyx.im',
+        mail: {},
+        database: {
+            client: 'sqlite3',
+            connection: {
+                filename: path.join(__dirname, '/content/data/ghost.db')
+            },
+            debug: false
+        },
+</pre>
+在`config.js`修改以上配置，可以将Ghost的URL从默认的`http://my-ghost-blog.com`更改为：`http://jp.ss.zyx.im`。
+
+更多关于`config.js`的作用可以参考：  
+[Deploying Ghost](http://support.ghost.org/config/)
+
+2) 让Ghost在后台运行
+`npm start --production`的一个问题是，这个命令只是让Ghost保持在前台运行，当你输入`Ctrl+C`或者退出SSH后，Ghost会停止运行。这肯定不是我们所期望的，因为对一个网站的最基本要求是它应该一直保持在线……  
+我们通过为Ghost添加Init Script来实现Ghost的后台持续运行。Ghost官方已经给出了实现这个功能的脚本，下载并进行一些简单的修改即可使用。  
+下载：
+<pre>
+curl https://raw.githubusercontent.com/TryGhost/Ghost-Config/master/init.d/ghost \
+  -o /etc/init.d/ghost
+</pre>
+注意以下几点：  
+·打开脚本，将`GHOST_ROOT`变量修改为Ghost所在的目录。  
+·检查`DAEMON`变量的值是否和`which node`的输出值相同。   
+
+·init script只能被具有Ghost所有权的用户与用户组运行，所以我们需要建立Ghost专用的用户与用户组：  
+<pre>
+useradd -r ghost -U
+chown -R ghost:ghost /path/to/ghost
+chmod 755 /etc/init.d/ghost
+</pre>
+今后你就可以通过以下命令来对Ghost的运行与停止等任务进行控制了：
+<pre>
+service ghost start      启动
+service ghost stop       停止
+service ghost restart    重启
+service ghost status     检查状态
+</pre>
+为了让Ghost能够随服务器开机自动启动，我们需要将刚刚创建的初始化脚本注册为为启动项。 输入以下命令：
+<pre>
+update-rc.d ghost defaults
+update-rc.d ghost enable
+</pre>
+
+<p>4) 使用Nginx反代Ghost实现Ghost的正常访问<br>此时，当你输入<code>service ghost start</code>后，输入Ghost博客的地址，浏览器依旧会显示无法访问。我们通过使用Nginx对Ghost进行反向代理来彻底解决这个问题。<br>安装Nginx</p>
+<p><pre><br>apt-get install nginx<br></pre><br>进入<code>sites-available</code>目录为Ghost添加站点配置</p>
+<p><pre><br>cd /etc/nginx/sites-availalbe<br>nano ghost.conf<br></pre><br>在<code>ghost.conf</code>中写入如下配置信息：</p>
+<p><pre><br>server {<br>    listen 80;<br>    server_name example.com;</pre></p>
+<pre><code><span class="title">location</span> / {
+    <span class="title">proxy_set_header</span>   X-Real-IP <span class="variable">$remote_addr</span>;
+    <span class="title">proxy_set_header</span>   Host      <span class="variable">$http_host</span>;
+    <span class="title">proxy_pass</span>         <span class="url">http://127.0.0.1:2368</span>;
+}
+</code></pre><p>}<br><br>将<code>server_name</code>中的<code>example.com</code>改为你自己的域名。保存。<br>将配置文件软链接到<code>sites-enabled</code>目录下：</p>
+<p><pre><br>ln -s /etc/nginx/sites-available/ghost.conf /etc/nginx/sites-enabled/ghost.conf<br></pre><br>重启Nginx后，你就可以使用自己的域名访问你的Ghost博客了。<br><img src="https://dn-izyx.qbox.me/content/images/2016/07/First-Time-You-Visit.JPG" alt="First time u see"><br>你可以在<code>http://your-ghost-blog/ghost</code>对Ghost博客进行自定义设置。  </p>
+<p>至此，一个Ghost博客成功搭建。</p>
+
+      
+    </div>
+  
+    <footer class="article-footer">
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Blog/">Blog</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ghost/">Ghost</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li></ul>
+
+    </footer>
+  
+  </div>
+  
+</article>
+
+
+    
+      <article id="post-a-error-on-letsencrypt-updating" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blogs/a-error-on-letsencrypt-updating/">a_error_on_letsencrypt_updating</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      <a href="/blogs/a-error-on-letsencrypt-updating/" class="article-date">
+  <time datetime="2016-12-07T15:34:18.000Z" itemprop="datePublished">2016-12-07</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Server/">Server</a>
+  </div>
+
+      
+        <div class="article-comment-link-wrap">
+          <a href="http://x.zyx.im//blogs/a-error-on-letsencrypt-updating/#disqus_thread" class="article-comment-link">评论</a>
+        </div>
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>众所周知，Let’s Encrypt签发的证书的有效期是三个月，而这个博客的证书即将在八月份到期，于是我尝试着手动更新下证书。进入到Let’s Encrypt所在的目录，输入如下代码后出现了一个问题……</p>
+<pre>
+./letsencrypt-auto --agree-dev-preview --server https://acme-v01.api.letsencrypt.org/directory certonly
+</pre>
+![](/content/images/2016/07/Installing-Python-packages.png)  
+这一命令卡死在了“Installing Python packages”这里……  
+这个问题最常出现在国内的服务器上，稍稍懂行点的人应该能把问题的原因猜得八九不离十了——默认的Python源被墙掉了……嗯，事实的确如此。  
+既然已经知道了问题所在，那么接下来的任务就很简单，换掉PyPI源即可。很简单，编辑`~/.pip/pip.conf`，如果文件和目录不存在的话，应当先建立文件或者目录，加入或修改以下配置。当然，你也可以把镜像源改成国内其它服务商的。
+<pre>
+[global]
+index-url = http://mirrors.aliyun.com/pypi/simple/
+
+[install]
+trusted-host=mirrors.aliyun.com
+</pre>
+保存即可。
+
+你也可以不修改配置文件，而是在每次安装前临时指定源：  
+<pre>
+pip install -i http://< mirror >/simple < package >
+</pre>
+如：
+<pre>
+http://mirrors.aliyun.com/pypi/simple ada
+</pre>
+      
+    </div>
+  
+    <footer class="article-footer">
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Let-s-Encrypt/">Let's Encrypt</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li></ul>
+
+    </footer>
+  
+  </div>
+  
+</article>
+
+
+    
       <article id="post-wireless-printer-powered-by-raspi" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -462,184 +760,6 @@ if (!-f $request_filename){
     <footer class="article-footer">
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Nginx/">Nginx</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/WordPress/">WordPress</a></li></ul>
-
-    </footer>
-  
-  </div>
-  
-</article>
-
-
-    
-      <article id="post-wordpress-owner" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/blogs/wordpress-owner/">关于初装WordPress后出现的权限问题</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      <a href="/blogs/wordpress-owner/" class="article-date">
-  <time datetime="2015-09-24T12:09:39.000Z" itemprop="datePublished">2015-09-24</time>
-</a>
-      
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Server/">Server</a>
-  </div>
-
-      
-        <div class="article-comment-link-wrap">
-          <a href="http://x.zyx.im//blogs/wordpress-owner/#disqus_thread" class="article-comment-link">评论</a>
-        </div>
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>将网站目录的使用者改为 www-data:www-data即可，Nginx和Apache2应该都试用。  </p>
-<p>具体方法：  </p>
-<p>chown –R www–data: www–data 网站目录/  </p>
-
-      
-    </div>
-  
-    <footer class="article-footer">
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Nginx/">Nginx</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/WordPress/">WordPress</a></li></ul>
-
-    </footer>
-  
-  </div>
-  
-</article>
-
-
-    
-      <article id="post-hex-on-display" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/blogs/hex-on-display/">数码管上显示数字所需的十六进制与二进制</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      <a href="/blogs/hex-on-display/" class="article-date">
-  <time datetime="2015-08-06T02:54:03.000Z" itemprop="datePublished">2015-08-06</time>
-</a>
-      
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/MCU/">MCU</a>
-  </div>
-
-      
-        <div class="article-comment-link-wrap">
-          <a href="http://x.zyx.im//blogs/hex-on-display/#disqus_thread" class="article-comment-link">评论</a>
-        </div>
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>自己在纸上画出来的……<br>这里列出共阳极数码管上各个数字对应的二进制与十六进制表示，共阴极数码管二进制表示通过按位取反即可获得：</p>
-<pre>
-F:    0111 0001                 0x71  
-E:    0111 1001                 0x79  
-D:    0101 1110                 0x5e  
-C:    0011 1001                 0x39  
-B:    0111 1100                 0x7c  
-A:    0111 0111                 0x77  
-9:    0110 1111                 0x6f  
-8:    0111 1111                 0x7f  
-7:    0000 0111                 0x07  
-6:    0111 1101                 0x7d  
-5:    0110 1101                 0x6d  
-4:    0110 0110                 0x66  
-3:    0100 1111                 0x4f  
-2:    0101 1011                 0x5b  
-1:    0000 0110                 0x06  
-0:    0011 1111                 0x3f  
-</pre>
-      
-    </div>
-  
-    <footer class="article-footer">
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/bin/">bin</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hex/">hex</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/不会换算/">不会换算</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/二进制/">二进制</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/十六进制/">十六进制</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数码管/">数码管</a></li></ul>
-
-    </footer>
-  
-  </div>
-  
-</article>
-
-
-    
-      <article id="post-free-running-keys-MCU" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/blogs/free-running-keys-MCU/">独立按键</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      <a href="/blogs/free-running-keys-MCU/" class="article-date">
-  <time datetime="2015-08-05T04:36:49.000Z" itemprop="datePublished">2015-08-05</time>
-</a>
-      
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/MCU/">MCU</a>
-  </div>
-
-      
-        <div class="article-comment-link-wrap">
-          <a href="http://x.zyx.im//blogs/free-running-keys-MCU/#disqus_thread" class="article-comment-link">评论</a>
-        </div>
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>按键在闭合和短开时，触点会存在抖动现象：<br><img src="/imgs/remove-the-shake.jpg" alt=""><br>若要让独立按键正常工作，避免按下一次却出现了按下多次的效果，消除抖动是其中的一个非常关键的环节。以一次完整的按键过程（按下-提起-还原）为例，来描述消抖这一环节的实现：  </p>
-<pre>
-if (KEY != 0xff)                                    //当检测到有按键被按下时    
-    {  
-        Delay10ms();                                //通过延时函数度过按下独立按键是的抖动阶段  
-        if (KEY != 0xff)                            //判断抖动阶段是否度过，按键是否处于被按下的稳定状态  
-        {  
-            Delay10ms();                            //再次延时，以判断按键是否还原  
-            if (KEY == 0xff)                        //如果出现还原的状态，准备执行设定的效果  
-            {  
-                //Add the effect that you want    
-                while (KEY != 0xff);                //当按键处于稳定的还原状态后，设定的效果开始执行  
-            }  
-        }  
-    }  
-</pre>
-
-      
-    </div>
-  
-    <footer class="article-footer">
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C语言/">C语言</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/单片机/">单片机</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/实习/">实习</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/暑假/">暑假</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/预热/">预热</a></li></ul>
 
     </footer>
   
