@@ -5,5 +5,45 @@
 		<link>//hidasia.github.io/</link>
 		<atom:link href="//hidasia.github.io//feed.xml" rel="self" type="application/rss+xml" />
 		
+			<item>
+				<title>Pic-Test</title>
+        <description>&lt;p&gt;&lt;img src=&quot;/img/rose.jpg&quot; alt=&quot;Rose&quot; /&gt;&lt;/p&gt;
+</description>
+				<pubDate>Thu, 18 May 2017 00:00:00 +0800</pubDate>
+				<link>//hidasia.github.io//2017/05/18/Pic-Test/</link>
+				<guid isPermaLink="true">//hidasia.github.io//2017/05/18/Pic-Test/</guid>
+			</item>
+		
+			<item>
+				<title>Jekyll on Windows</title>
+        <description>&lt;p&gt;&lt;strong&gt;1.安装Ruby&lt;/strong&gt;&lt;br /&gt;
+&lt;a href=&quot;http://rubyinstaller.org/downloads/&quot;&gt;http://rubyinstaller.org/downloads/&lt;/a&gt;&lt;br /&gt;
+&lt;strong&gt;2.安装DevKit&lt;/strong&gt;&lt;br /&gt;
+地址同上&lt;br /&gt;
+在DevKit目录下：&lt;/p&gt;
+&lt;pre&gt;
+ruby dk.rb init
+ruby dk.rb install
+&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;3.安装Jekyll&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;
+gem install bundler
+gem install jekyll
+&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;4.启动Jekyll&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;
+jekyll new myblog
+cd myblog
+jekyll serve
+&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;5.第一篇文章&lt;/strong&gt;&lt;br /&gt;
+在&lt;code class=&quot;highlighter-rouge&quot;&gt;_post&lt;/code&gt;目录下以&lt;code class=&quot;highlighter-rouge&quot;&gt;2017-5-18-BlogTitle.md&lt;/code&gt;的格式命名文章。&lt;br /&gt;
+文章应使用“UTF-8无BOM格式编码”。&lt;/p&gt;
+</description>
+				<pubDate>Thu, 18 May 2017 00:00:00 +0800</pubDate>
+				<link>//hidasia.github.io//2017/05/18/Jekyll-on-Windows/</link>
+				<guid isPermaLink="true">//hidasia.github.io//2017/05/18/Jekyll-on-Windows/</guid>
+			</item>
+		
 	</channel>
 </rss>
